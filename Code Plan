@@ -1,0 +1,7 @@
+Create objects that fall from the top of the screen to the bottom at random speed, intervals, and position
+Create a user that can move from side to side at a set speed
+Create lives
+Create a way to keep the score when the object falls off the bottom of the screen
+Create a way to increase the amount of objects at set time/score intervals
+Create a way for the user and the objects to interact, when a collision happens a life is lost 
+Create a way for the game to end after lives hits 0
