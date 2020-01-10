@@ -4,4 +4,4 @@ Create lives
 Create a way to keep the score when the object falls off the bottom of the screen
 Create a way to increase the amount of objects at set time/score intervals
 Create a way for the user and the objects to interact, when a collision happens a life is lost 
-Create a way for the game to end after lives hits 0
+Create a way for the game to end after lives hits
