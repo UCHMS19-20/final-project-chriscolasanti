@@ -1,6 +1,7 @@
 import sys
 import pygame 
 import random
+pygame.font.init 
 
 class Bad_object:
     def __init__(self, x, speed):
@@ -11,6 +12,9 @@ class Bad_object:
         self.y += self.speed
     def return_coords(self):
         return (int(self.x), int(self.y))
+
+font1 = pygame.font.SysFont("Comic Sans", 15)
+font2 = pygame.font.SysFont("Comic Sans", 6)
 
 pygame.init() #pygame will always be running
 
@@ -41,7 +45,7 @@ def add_to_bad_objects():
     speed = random.randint(1, 5)
     bad_objects.append(Bad_object(x, speed / 10.0))
 score = 0
-count = 0
+
 while True:
     print(score)
     while lives != 0: 
@@ -52,9 +56,6 @@ while True:
         for i in bad_objects:
             i.move_down()
             screen.blit(badobject, i.return_coords())
-
-        if i[1] == 600:
-            score += 1        
      
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_a]:
@@ -71,20 +72,24 @@ while True:
                 sys.exit()
         screen.blit(user, (userpos[0], userpos[1]))
         count += 1
+        user_rect = user.get.rect(center(userposx, user_y))
+        for i in bad_objects:
+            i_rect = badobject.get_rect(center(badobjectpos_x, badobjectpos_y))
+            if i.y >= 600:
+                text_livescore = font2.render(str(score))
+                screen.blit(text_livescore, (700,100))
+            if user_rect.colliderect(i_rect):
+                badobjectpos_x = random.randrange(0, width)
+                badobjectpos_y = 5000
+                lives -=1
         pygame.display.update()
 
-user_rect = user.get.rect(center(user_x, user_y))
-badobject_rect = badobject.get_rect(center(badobject_x, badobject_y))
-if user_rect.colliderect(badobject_rect):
-    badobjectpos_x = random.randrange(0, width)
-    badobjectpos_y = 5000
-    lives -=1
+    screen.fill( (0,0,0) )   
+    text_score = font1.render("Final Score:" + str(score))
+    screen.blit(text_score, (400,400))
+    text_end = font1.render("GAME OVER")
+    screen.blit(text_end, (400,100))
+    pygame.display.update()
 
-if lives == 0:
-    pygame.quit()
-    sys.exit()
-    
-
-
-
+fjlsdfjlsjflskdjfls
 
