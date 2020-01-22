@@ -71,12 +71,12 @@ while True:
                 sys.exit()
         screen.blit(user, (userpos[0], userpos[1])) #constantly updates the users position 
         count += 1
-        user_rect = user.get.rect((userpos[0], 535)) #creates the hitbox for the user
+        user_rect = user.get_rect(center = (userpos[0], 535)) #creates the hitbox for the user
         for i in bad_objects: #when the bad objects reach a certain y coordinate the score will be changed
-            i_rect = badobject.get_rect((badobjectpos_x, badobjectpos_y)) #creates the hitbox for the enemy
+            i_rect = badobject.get_rect(center = (i.return_coords())) #creates the hitbox for the enemy
             if i.y >= 600:
                 score += 1 
-                text_livescore = font2.render(str(score)) #score system as the game is playing
+                text_livescore = font2.render(f"score: {score}") #score system as the game is playing
                 screen.blit(text_livescore, (700,100))
             if user_rect.colliderect(i_rect): #when a collision happens a life is lost
                 badobjectpos_x = random.randrange(0, width)
