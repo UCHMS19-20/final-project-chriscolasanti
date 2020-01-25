@@ -48,3 +48,6 @@ Date  | Checkpoint
 
 * [Documentation](documentation.md)
 * [Resources](resources.md)
+* [Flowchart](https://drive.google.com/file/d/1GSnLAMNhpWnEP_kDigYrqZ8pg2od5ABN/view?usp=sharing)
+* [Game Description and Works Cited](https://docs.google.com/document/d/11kFfcvlQiA6oYX1RxLupxXmClEOvCcqMDWgjhePC_X8/edit?usp=sharing)
+* [Presentation](https://docs.google.com/presentation/d/1hcit5Gdu8L9_f5F6k9IQawBLc8UTksuA6hGqjS5kJ2I/edit?usp=sharing)
