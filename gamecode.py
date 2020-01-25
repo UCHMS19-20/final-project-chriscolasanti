@@ -1,11 +1,13 @@
 import sys
 import pygame 
+import pygame.ftfont
 import random #used for randomly generating something
 
 pygame.init() #pygame will always be running
 pygame.font.init() #initializes the fonts
 
-class Bad_object: #this is the descriptions for the falling ketchup bottles
+class Bad_object: 
+"""defining the bad objects and how they fall from the top of the screen"""
     def __init__(self, x, speed):
         self.x = x
         self.y = 0
@@ -15,15 +17,14 @@ class Bad_object: #this is the descriptions for the falling ketchup bottles
     def return_coords(self):
         return (int(self.x), int(self.y))
 
-font1 = pygame.font.SysFont("comicsansms", 15) #these are the fonts used for the end game screen and live score
-font2 = pygame.font.SysFont("comicsansms", 6)
+font1 = pygame.font.SysFont("comicsansms", 60) #these are the fonts used for the end game screen and live score
+font2 = pygame.font.SysFont("comicsansms", 15)
 
 screen = pygame.display.set_mode( (800, 600) ) #create the screen for the game
 print(pygame.QUIT)
 
 width = 800 #variable for the width of the screen
 lives = 5 #variable for the lives of the game 
-
 usermoverate = [.5,0] #speed at which the user will move
 
 userpos = [368, 535] #the users start position
@@ -45,10 +46,13 @@ def add_to_bad_objects(): #spawns and creates a speed for the falling object
     bad_objects.append(Bad_object(x, speed / 10.0))
 score = 0
 
+time = 0 #Timing for the loop that quits out of the game
+
 while True:
-    print(score)
     while lives != 0: #main game loop
         screen.fill( (0,0,0) )
+        text_livescore = font2.render(f"score: {score}", False,(0,122,0)) #score system as the game is playing
+        screen.blit(text_livescore, (700,20))
         if count % 200 == 0: #spawns the bad objects at random intervals
             # print(f"There are {len(bad_objects)} bad objects")
             add_to_bad_objects()
@@ -74,22 +78,22 @@ while True:
         user_rect = user.get_rect(center = (userpos[0], 535)) #creates the hitbox for the user
         for i in bad_objects: #when the bad objects reach a certain y coordinate the score will be changed
             i_rect = badobject.get_rect(center = (i.return_coords())) #creates the hitbox for the enemy
-            if i.y >= 600:
-                score += 1 
-                text_livescore = font2.render(f"score: {score}") #score system as the game is playing
-                screen.blit(text_livescore, (700,100))
+            if i.y >= 600 and i.y <= 655:
+                score += 10 
+                i.y += 60 #telepors the object out of the score range to make sure it is only added once
             if user_rect.colliderect(i_rect): #when a collision happens a life is lost
-                badobjectpos_x = random.randrange(0, width)
-                badobjectpos_y = 5000
+                i.y += 700 #teleports the bad object out of the screen
                 lives -=1
+                print(lives)
         pygame.display.update()
         if lives == 0: #if the user runs out of lives the main loops ends
-            break
-
-screen.fill( (0,0,0) ) #displays the final score and game over
-text_score = font1.render(f"Final Score: {score}") 
-screen.blit(text_score, (400,400))
-text_end = font1.render("GAME OVER") 
-screen.blit(text_end, (400,100))
-pygame.display.update()
+            while time < 1000: #shows the final screen for a count of 50 then quits out of the game
+                time += 1
+                screen.fill( (0,0,0) ) #displays the final score and game over
+                text_score = font1.render(f"Final Score: {score}", True, (0,127,0)) 
+                screen.blit(text_score, (200,400)) 
+                text_end = font1.render("GAME OVER", True, (0,127,0)) 
+                screen.blit(text_end, (230,100))
+                pygame.display.update()
+            sys.quit #quits out of the game
 
