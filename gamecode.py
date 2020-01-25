@@ -7,7 +7,7 @@ pygame.init() #pygame will always be running
 pygame.font.init() #initializes the fonts
 
 class Bad_object: 
-"""defining the bad objects and how they fall from the top of the screen"""
+    """defining the bad objects and how they fall from the top of the screen"""
     def __init__(self, x, speed):
         self.x = x
         self.y = 0
@@ -90,10 +90,10 @@ while True:
             while time < 1000: #shows the final screen for a count of 50 then quits out of the game
                 time += 1
                 screen.fill( (0,0,0) ) #displays the final score and game over
-                text_score = font1.render(f"Final Score: {score}", True, (0,127,0)) 
-                screen.blit(text_score, (200,400)) 
-                text_end = font1.render("GAME OVER", True, (0,127,0)) 
-                screen.blit(text_end, (230,100))
+                text_score = font1.render(f"Final Score: {score}", True, (0,180,90)) 
+                screen.blit(text_score, (180,400)) 
+                text_end = font1.render("GAME OVER", True, (0,180,90)) 
+                screen.blit(text_end, (220,100))
                 pygame.display.update()
             sys.quit #quits out of the game
 
